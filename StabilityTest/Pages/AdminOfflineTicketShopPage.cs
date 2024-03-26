@@ -17,7 +17,7 @@ public class AdminOfflineTicketShopPage : BasePage
     {
         var adminTitle = FluentWait.Until(ExpectedConditions.ElementIsVisible(_adminTitle));
         var text = adminTitle.Text;
-        DrawBorder(adminTitle);
+        DrawBorder(adminTitle); 
         
         Assert.That(text, Is.EqualTo("Informe de sesiones de usuario"));
     }
