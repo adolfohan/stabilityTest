@@ -1,0 +1,56 @@
+trigger:
+  - master
+
+schedules:
+  - cron: "0 5 * * *"
+    displayName: Daily build at 6 AM CET
+    branches:
+      include:
+        - 'master'
+    always: true
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+  - script: |
+      dotnet build --configuration $(buildConfiguration)
+    displayName: 'Build Configuration'
+
+  - script: |
+      set SourceDirectory=$(Build.SourcesDirectory)
+      dotnet test --configuration $(buildConfiguration) --logger trx
+    displayName: 'Running tests'
+    continueOnError: true
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
+
+  - task: CopyFiles@2
+    displayName: 'Publish Screenshots'
+    inputs:
+      sourceFolder: '$(Build.SourcesDirectory)'
+      contents: '**/*.png'
+      targetFolder: '$(Build.ArtifactStagingDirectory)/Screenshots'
+      artifactName: 'Screenshots'
+
+  - task: CopyFiles@2
+    displayName: 'Publish Reports'
+    inputs:
+      sourceFolder: '$(Build.SourcesDirectory)'
+      contents: '**/*.html'
+      targetFolder: '$(Build.ArtifactStagingDirectory)/Reports'
+      artifactName: 'Reports'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Tests Artifacts'
+    inputs:
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'TestArtifacts'
