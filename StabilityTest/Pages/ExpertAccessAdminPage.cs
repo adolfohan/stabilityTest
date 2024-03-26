@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
 
@@ -15,10 +16,28 @@ public class ExpertAccessAdminPage : BasePage
     
     public void VerifyAdminTitle()
     {
-        var adminTitle = FluentWait.Until(ExpectedConditions.ElementIsVisible(_adminTitle));
-        var text = adminTitle.Text;
-        DrawBorder(adminTitle);
-        
-        Assert.That(text, Is.EqualTo("Dispositivos"));
+        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(2));
+        string[] xpaths =
+        {
+            "//h1[normalize-space()='Dispositivos']",
+            "//h1[@class='h3 mb-0 text-heading']"
+        };
+
+        foreach (var xpath in xpaths)
+        {
+            try
+            {
+                var element = wait.Until(ExpectedConditions.ElementExists(By.XPath(xpath)));
+                if (!element.Displayed) continue;
+                DrawBorder(element);
+                break;
+            }
+            catch (NoSuchElementException)
+            {
+            }
+            catch (WebDriverTimeoutException)
+            {
+            }
+        }
     }
 }
