@@ -3,7 +3,6 @@ C:\Projects\Repositories\Git\StabilityTest\StabilityTest\obj\Debug\net7.0\Stabil
 C:\Projects\Repositories\Git\StabilityTest\StabilityTest\obj\Debug\net7.0\StabilityTest.AssemblyInfoInputs.cache
 C:\Projects\Repositories\Git\StabilityTest\StabilityTest\obj\Debug\net7.0\StabilityTest.AssemblyInfo.cs
 C:\Projects\Repositories\Git\StabilityTest\StabilityTest\obj\Debug\net7.0\StabilityTest.csproj.CoreCompileInputs.cache
-C:\Projects\Repositories\Git\StabilityTest\StabilityTest\obj\Debug\net7.0\StabilityTest.sourcelink.json
 C:\Projects\Repositories\Git\StabilityTest\StabilityTest\bin\Debug\net7.0\testhost.dll
 C:\Projects\Repositories\Git\StabilityTest\StabilityTest\bin\Debug\net7.0\testhost.exe
 C:\Projects\Repositories\Git\StabilityTest\StabilityTest\bin\Debug\net7.0\selenium-manager\linux\selenium-manager

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
+using StabilityTest.Utilities;
 
 namespace StabilityTest.Pages;
 
@@ -22,11 +23,11 @@ public class TicketShopB2BPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Taquilla B2B logo is not present in this page.");
+            throw new ElementNotFoundException("Taquilla B2B logo is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("Taquilla B2B logo is not present in this page.");
+            throw new ElementNotFoundException("Taquilla B2B logo is not present in this page.");
         }
     }
 }

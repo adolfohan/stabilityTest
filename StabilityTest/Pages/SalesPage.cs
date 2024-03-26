@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
+using StabilityTest.Utilities;
 
 namespace StabilityTest.Pages;
 
@@ -43,11 +44,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Online Ticket Shop Partner element is not present.");
+            throw new ElementNotFoundException("Online Ticket Shop Partner element is not present.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("Online Ticket Shop Partner element is not present.");
+            throw new ElementNotFoundException("Online Ticket Shop Partner element is not present.");
         }
     }
 
@@ -60,11 +61,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Professional Ticket Shop element is not present.");
+            throw new ElementNotFoundException("Professional Ticket Shop element is not present.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("Professional Ticket Shop element is not present.");
+            throw new ElementNotFoundException("Professional Ticket Shop element is not present.");
         }
     }
 
@@ -77,11 +78,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("B2B button is not present in this page.");
+            throw new ElementNotFoundException("B2B button is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("B2B button is not present in this page.");
+            throw new ElementNotFoundException("B2B button is not present in this page.");
         }
     }
 
@@ -93,11 +94,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Microchip element is not present in this page.");
+            throw new ElementNotFoundException("Microchip element is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("Microchip element is not present in this page.");
+            throw new ElementNotFoundException("Microchip element is not present in this page.");
         }
     }
 
@@ -110,11 +111,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Admin Offline TicketShop is not present in this page.");
+            throw new ElementNotFoundException("Admin Offline TicketShop is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("Admin Offline TicketShop is not present in this page.");
+            throw new ElementNotFoundException("Admin Offline TicketShop is not present in this page.");
         }
     }
 
@@ -127,11 +128,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("CMS Ticket Shop B2B is not present in this page.");
+            throw new ElementNotFoundException("CMS Ticket Shop B2B is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("CMS Ticket Shop B2B is not present in this page.");
+            throw new ElementNotFoundException("CMS Ticket Shop B2B is not present in this page.");
         }
     }
 
@@ -144,11 +145,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("CMS Public Ticket Shop is not present in this page.");
+            throw new ElementNotFoundException("CMS Public Ticket Shop is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("CMS Public Ticket Shop is not present in this page.");
+            throw new ElementNotFoundException("CMS Public Ticket Shop is not present in this page.");
         }
     }
 
@@ -161,11 +162,11 @@ public class SalesPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Expert Access Admin is not present in this page.");
+            throw new ElementNotFoundException("Expert Access Admin is not present in this page.");
         }
         catch (WebDriverTimeoutException)
         {
-            Console.WriteLine("Expert Access Admin is not present in this page.");
+            throw new ElementNotFoundException("Expert Access Admin is not present in this page.");
         }
     }
 

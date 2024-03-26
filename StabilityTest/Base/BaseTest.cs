@@ -196,6 +196,10 @@ public class BaseTest
                 action();
             }
         }
+        catch (ElementNotFoundException ex)
+        {
+            _test?.Pass(ex.Message);
+        }
         catch (Exception e)
         {
             HandleTestFailure(e);

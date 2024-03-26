@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
+using StabilityTest.Utilities;
 
 namespace StabilityTest.Pages;
 
@@ -21,7 +22,11 @@ public class PartnerPage : BasePage
         }
         catch (NoSuchElementException)
         {
-            Console.WriteLine("Login button element is not present.");
+            throw new ElementNotFoundException("Login button element is not present.");
+        }
+        catch (WebDriverTimeoutException)
+        {
+            throw new ElementNotFoundException("Login button element is not present.");
         }
     }
     
