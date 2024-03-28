@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
 using StabilityTest.Utilities;
@@ -18,7 +18,6 @@ public class SalesPage : BasePage
 
     private readonly By _ticketShopB2B = By.XPath("//a[@href='/Purchases/Sale/B2BShopSale']");
     private readonly By _microchip = By.XPath("//i[@class='fa fa-microchip']");
-    private readonly By _adminOfflineTicketShop = By.XPath("//a[contains(text(), 'Admin taquillas')]");
     private readonly By _cmsTicketShopB2B = By.XPath("//a[normalize-space()='CMS Taquilla B2B']");
     private readonly By _cmsPublicTicketShop = By.XPath("//a[normalize-space()='CMS Taquilla pública']");
     private readonly By _expertAccessAdmin = By.XPath("//a[normalize-space()='Expert Access Admin']");
@@ -104,16 +103,34 @@ public class SalesPage : BasePage
 
     public void ClickOnAdminOfflineTicketShop()
     {
-        try
+        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(2));
+        string[] xpaths =
         {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_adminOfflineTicketShop)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
+            "//a[normalize-space()='Admin Taquillas Físicas']",
+            "//a[contains(text(), 'Admin taquillas')]"
+        };
+
+        var elementFound = false;
+
+        foreach (var xpath in xpaths)
         {
-            throw new ElementNotFoundException("Admin Offline TicketShop is not present in this page.");
+            try
+            {
+                var element = wait.Until(ExpectedConditions.ElementExists(By.XPath(xpath)));
+                element.Click();
+                Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
+                elementFound = true;
+                break;
+            }
+            catch (NoSuchElementException)
+            {
+            }
+            catch (WebDriverTimeoutException)
+            {
+            }
         }
-        catch (WebDriverTimeoutException)
+
+        if (!elementFound)
         {
             throw new ElementNotFoundException("Admin Offline TicketShop is not present in this page.");
         }

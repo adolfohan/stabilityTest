@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
@@ -8,12 +7,10 @@ namespace StabilityTest.Pages;
 
 public class ExpertAccessAdminPage : BasePage
 {
-    private readonly By _adminTitle = By.XPath("//h1[normalize-space()='Dispositivos']");
-
     public ExpertAccessAdminPage(IWebDriver? driver) : base(driver)
     {
     }
-    
+
     public void VerifyAdminTitle()
     {
         var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(2));
