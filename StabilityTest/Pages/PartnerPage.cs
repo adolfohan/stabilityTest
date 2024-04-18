@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using StabilityTest.Base;
-using StabilityTest.Utilities;
 
 namespace StabilityTest.Pages;
 
@@ -16,18 +15,7 @@ public class PartnerPage : BasePage
 
     public void ClickOnLoginButton()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_loginBtn)).Click();
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("Login button element is not present.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("Login button element is not present.");
-        }
+        ClickOnElement(_loginBtn,"Login button element is not present.");
     }
     
     public void VerifyLogo()

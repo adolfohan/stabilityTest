@@ -19,11 +19,9 @@ public class OnlineTicketShopPartnerPage : BasePage
             var taquillaOnline = FluentWait.Until(ExpectedConditions.ElementIsVisible(_taquillaOnlineColaboradoresTitle));
             DrawBorder(taquillaOnline);
         }
-        catch (NoSuchElementException)
+        catch (Exception)
         {
-        }
-        catch (WebDriverTimeoutException)
-        {
+            // ignored
         }
     }
     

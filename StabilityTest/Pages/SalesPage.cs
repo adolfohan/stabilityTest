@@ -37,68 +37,22 @@ public class SalesPage : BasePage
 
     public void ClickOnOnlineTicketShopPartner()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_partnersOnlineTicketShop)).Click();
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("Online Ticket Shop Partner element is not present.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("Online Ticket Shop Partner element is not present.");
-        }
+        ClickOnElement(_partnersOnlineTicketShop, "Online Ticket Shop Partner element is not present.");
     }
 
     public void ClickOnProfessionalTicketShop()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_professionalTicketShop)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("Professional Ticket Shop element is not present.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("Professional Ticket Shop element is not present.");
-        }
+        ClickOnElementAndSwitchWindow(_professionalTicketShop, "Professional Ticket Shop element is not present.");
     }
 
     public void ClickOnTicketShopB2B()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_ticketShopB2B)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("B2B button is not present in this page.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("B2B button is not present in this page.");
-        }
+        ClickOnElementAndSwitchWindow(_ticketShopB2B, "B2B button is not present in this page.");
     }
 
     public void ClickOnMicrochip()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_microchip)).Click();
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("Microchip element is not present in this page.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("Microchip element is not present in this page.");
-        }
+        ClickOnElement(_microchip, "Microchip element is not present in this page.");
     }
 
     public void ClickOnAdminOfflineTicketShop()
@@ -110,8 +64,6 @@ public class SalesPage : BasePage
             "//a[contains(text(), 'Admin taquillas')]"
         };
 
-        var elementFound = false;
-
         foreach (var xpath in xpaths)
         {
             try
@@ -119,73 +71,32 @@ public class SalesPage : BasePage
                 var element = wait.Until(ExpectedConditions.ElementExists(By.XPath(xpath)));
                 element.Click();
                 Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-                elementFound = true;
-                break;
+                return;
             }
-            catch (NoSuchElementException)
+            catch (Exception)
             {
-            }
-            catch (WebDriverTimeoutException)
-            {
+                // ignored
             }
         }
 
-        if (!elementFound)
-        {
-            throw new ElementNotFoundException("Admin Offline TicketShop is not present in this page.");
-        }
+        throw new ElementNotFoundException("Admin Offline TicketShop is not present in this page.");
     }
 
     public void ClickOnCmsTicketShopB2B()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_cmsTicketShopB2B)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("CMS Ticket Shop B2B is not present in this page.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("CMS Ticket Shop B2B is not present in this page.");
-        }
+        ClickOnElementAndSwitchWindow(_cmsTicketShopB2B, "CMS Ticket Shop B2B is not present in this page.");
     }
 
     public void ClickOnCmsPublicTicketShop()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_cmsPublicTicketShop)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("CMS Public Ticket Shop is not present in this page.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("CMS Public Ticket Shop is not present in this page.");
-        }
+        ClickOnElementAndSwitchWindow(_cmsPublicTicketShop, "CMS Public Ticket Shop is not present in this page.");
     }
 
     public void ClickOnExpertAccessAdmin()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_expertAccessAdmin)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("Expert Access Admin is not present in this page.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("Expert Access Admin is not present in this page.");
-        }
+        ClickOnElementAndSwitchWindow(_expertAccessAdmin, "Expert Access Admin is not present in this page.");
     }
+
 
     public void ClickOnProductButton()
     {

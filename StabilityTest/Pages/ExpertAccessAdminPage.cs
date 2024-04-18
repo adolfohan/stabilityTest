@@ -29,11 +29,9 @@ public class ExpertAccessAdminPage : BasePage
                 DrawBorder(element);
                 break;
             }
-            catch (NoSuchElementException)
+            catch (Exception)
             {
-            }
-            catch (WebDriverTimeoutException)
-            {
+                // ignored
             }
         }
     }

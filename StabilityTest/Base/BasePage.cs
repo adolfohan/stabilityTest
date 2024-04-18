@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using StabilityTest.Utilities;
 
 namespace StabilityTest.Base;
 
@@ -67,4 +69,28 @@ public class BasePage
             ((IJavaScriptExecutor)driver!).ExecuteScript("return document.readyState").Equals("complete"));
     }
     
+    protected void ClickOnElementAndSwitchWindow(By elementLocator, string errorMessage)
+    {
+        try
+        {
+            FluentWait.Until(ExpectedConditions.ElementToBeClickable(elementLocator)).Click();
+            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
+        }
+        catch (Exception)
+        {
+            throw new ElementNotFoundException(errorMessage);
+        }
+    }
+    
+    protected void ClickOnElement(By elementLocator, string errorMessage)
+    {
+        try
+        {
+            FluentWait.Until(ExpectedConditions.ElementToBeClickable(elementLocator)).Click();
+        }
+        catch (Exception)
+        {
+            throw new ElementNotFoundException(errorMessage);
+        }
+    }
 }

@@ -37,7 +37,6 @@ public class CmsPublicTicketShopPage : BasePage
 
     public void ClickOnPublicTicketShopLink()
     {
-        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(2));
         string[] xpaths =
         {
             "//th[text()='TicketShop Dns']/following::a[contains(@href, '.com') and not(contains(@href, 'experticket'))]",
@@ -49,15 +48,13 @@ public class CmsPublicTicketShopPage : BasePage
         {
             try
             {
-                var element = wait.Until(ExpectedConditions.ElementExists(By.XPath(xpath)));
+                var element = FluentWait.Until(ExpectedConditions.ElementExists(By.XPath(xpath)));
                 element.Click();
-                break;
+                return;
             }
-            catch (NoSuchElementException)
+            catch (Exception)
             {
-            }
-            catch (WebDriverTimeoutException)
-            {
+                // ignored
             }
         }
     }

@@ -31,11 +31,9 @@ public class PublicTicketShopPage : BasePage
                 DrawBorder(element);
                 break;
             }
-            catch (NoSuchElementException)
+            catch (Exception)
             {
-            }
-            catch (WebDriverTimeoutException)
-            {
+                // ignored
             }
         }
     }

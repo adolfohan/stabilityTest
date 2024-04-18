@@ -17,19 +17,7 @@ public class ProviderPage : BasePage
 
     public void ClickOnLoginButton()
     {
-        try
-        {
-            FluentWait.Until(ExpectedConditions.ElementToBeClickable(_loginBtn)).Click();
-            Driver!.SwitchTo().Window(Driver.WindowHandles.Last());
-        }
-        catch (NoSuchElementException)
-        {
-            throw new ElementNotFoundException("Login button is not present in this page.");
-        }
-        catch (WebDriverTimeoutException)
-        {
-            throw new ElementNotFoundException("Login button is not present in this page.");
-        }
+        ClickOnElementAndSwitchWindow(_loginBtn, "Login button is not present in this page.");
     }
 
     public void VerifyLogo()
